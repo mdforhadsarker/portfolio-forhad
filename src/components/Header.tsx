@@ -1,10 +1,40 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Header = () => {
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  const toggleDrawer = () => {
+    setIsDrawerOpen((prev) => !prev);
+  };
+
   return (
-    <div className="flex items-center justify-between max-w-[1280px] mx-auto py-6">
-      {/* Name logo */}
-      <div>
+    <div className="flex items-center justify-between max-w-[1280px] h-[100px] mx-auto">
+      {/* Mobile Navigation */}
+      <div className="flex items-center justify-between md:hidden">
+        {/* Menu Icon */}
+        <button
+          onClick={toggleDrawer}
+          className="p-2 rounded-full hover:bg-gray-200 focus:outline-none"
+          aria-label="Open Menu"
+        >
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M22.4994 2.56653H1.49944C1.38158 2.56653 1.28516 2.66296 1.28516 2.78081V4.4951C1.28516 4.61296 1.38158 4.70939 1.49944 4.70939H22.4994C22.6173 4.70939 22.7137 4.61296 22.7137 4.4951V2.78081C22.7137 2.66296 22.6173 2.56653 22.4994 2.56653ZM22.4994 19.2808H1.49944C1.38158 19.2808 1.28516 19.3772 1.28516 19.4951V21.2094C1.28516 21.3272 1.38158 21.4237 1.49944 21.4237H22.4994C22.6173 21.4237 22.7137 21.3272 22.7137 21.2094V19.4951C22.7137 19.3772 22.6173 19.2808 22.4994 19.2808ZM22.4994 10.9237H1.49944C1.38158 10.9237 1.28516 11.0201 1.28516 11.138V12.8522C1.28516 12.9701 1.38158 13.0665 1.49944 13.0665H22.4994C22.6173 13.0665 22.7137 12.9701 22.7137 12.8522V11.138C22.7137 11.0201 22.6173 10.9237 22.4994 10.9237Z"
+              fill="black"
+              fillOpacity="0.85"
+            />
+          </svg>
+        </button>
+      </div>
+      {/* Logo */}
+      <Link to="/" className="text-center">
         <svg
           width="239"
           height="19"
@@ -69,16 +99,14 @@ const Header = () => {
             fill="#DC2F3D"
           />
         </svg>
-      </div>
-
-      {/* Nav */}
-      <div className="flex space-x-6">
+      </Link>
+      {/* Desktop Navigation */}
+      <div className="hidden md:flex space-x-6">
         <ul>
           <li>
-            {" "}
             <Link
               to="/case"
-              className="text-[#2F2F2F] uppercase hover:text-[#FA4961] "
+              className="text-[#2F2F2F] uppercase hover:text-[#FA4961]"
             >
               Case
             </Link>
@@ -88,7 +116,7 @@ const Header = () => {
           <li>
             <Link
               to="/projects"
-              className="text-[#2F2F2F] uppercase hover:text-[#FA4961] "
+              className="text-[#2F2F2F] uppercase hover:text-[#FA4961]"
             >
               Projects
             </Link>
@@ -98,7 +126,7 @@ const Header = () => {
           <li>
             <Link
               to="/resume"
-              className="text-[#2F2F2F] uppercase hover:text-[#FA4961] "
+              className="text-[#2F2F2F] uppercase hover:text-[#FA4961]"
             >
               Resume
             </Link>
@@ -108,7 +136,7 @@ const Header = () => {
           <li>
             <Link
               to="/about-me"
-              className="text-[#2F2F2F] uppercase hover:text-[#FA4961] "
+              className="text-[#2F2F2F] uppercase hover:text-[#FA4961]"
             >
               About Me
             </Link>
@@ -125,11 +153,14 @@ const Header = () => {
           </li>
         </ul>
       </div>
-
-      <button>
+      {/* Bulb Icon */}
+      <button
+        className="p-2 rounded-full hover:bg-gray-200 focus:outline-none"
+        aria-label="Bulb Icon"
+      >
         <svg
-          width="36"
-          height="36"
+          width="24"
+          height="24"
           viewBox="0 0 36 36"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -148,6 +179,70 @@ const Header = () => {
           </defs>
         </svg>
       </button>
+      {/* Drawer */}
+      {isDrawerOpen && (
+        <div className="fixed top-0 left-0 w-64 h-full bg-white shadow-lg z-50">
+          <button
+            onClick={() => setIsDrawerOpen(false)}
+            className="absolute top-4 right-4 text-2xl text-[#2F2F2F]"
+          >
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M13.3876 11.9987L20.4188 3.61749C20.5367 3.47821 20.4376 3.2666 20.2554 3.2666H18.1179C17.992 3.2666 17.8715 3.32285 17.7885 3.41928L11.9894 10.3327L6.19025 3.41928C6.1099 3.32285 5.98936 3.2666 5.86079 3.2666H3.72329C3.54115 3.2666 3.44204 3.47821 3.5599 3.61749L10.5911 11.9987L3.5599 20.38C3.5335 20.411 3.51656 20.449 3.51109 20.4894C3.50563 20.5298 3.51187 20.5709 3.52908 20.6078C3.54628 20.6448 3.57372 20.676 3.60815 20.6978C3.64257 20.7196 3.68254 20.7311 3.72329 20.7309H5.86079C5.98668 20.7309 6.10722 20.6746 6.19025 20.5782L11.9894 13.6648L17.7885 20.5782C17.8688 20.6746 17.9894 20.7309 18.1179 20.7309H20.2554C20.4376 20.7309 20.5367 20.5193 20.4188 20.38L13.3876 11.9987Z"
+                fill="#2F2F2F"
+              />
+            </svg>
+          </button>
+          <ul className="mt-12 space-y-6">
+            <li>
+              <Link
+                to="/case"
+                className="block px-6 text-[#2F2F2F] uppercase hover:text-[#FA4961]"
+              >
+                Case
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/projects"
+                className="block px-6 text-[#2F2F2F] uppercase hover:text-[#FA4961]"
+              >
+                Projects
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/resume"
+                className="block px-6 text-[#2F2F2F] uppercase hover:text-[#FA4961]"
+              >
+                Resume
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/about-me"
+                className="block px-6 text-[#2F2F2F] uppercase hover:text-[#FA4961]"
+              >
+                About Me
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/contact"
+                className="block px-6 text-[#2F2F2F] uppercase hover:text-[#FA4961]"
+              >
+                Contact
+              </Link>
+            </li>
+          </ul>
+        </div>
+      )}
     </div>
   );
 };

@@ -1,9 +1,13 @@
 import forhadImage from "../assets/forhad-eclip.png";
 import SocialMedia from "./SocialMedia";
+import hiFive from "../assets/hi.svg";
+import softwareEngineering from "../assets/se.svg";
+import humanComputer from "../assets/hci.svg";
+import uiUx from "../assets/uiux.svg";
 
 const Hero = () => {
   return (
-    <div className=" relative flex items-end justify-between max-w-[1280px] mx-auto">
+    <div className=" relative flex items-end justify-between max-w-[1280px] max-h-[860] mx-auto">
       {/* Circles */}
       <div className="absolute top-[400px] left-[5px]">
         <svg
@@ -83,6 +87,20 @@ const Hero = () => {
         </svg>
       </div>
 
+      {/* Floating Image */}
+      <div className="absolute top-[200px] left-[5px] transform translate-x-[10px] translate-y-[-10px] animate-float">
+        <img src={hiFive} alt="hifive" />
+      </div>
+      <div className="absolute top-[20px] right-[300px] transform translate-x-[10px] translate-y-[-10px] animate-float">
+        <img src={softwareEngineering} alt="softwareEngineering" />
+      </div>
+      <div className="absolute top-[200px] right-[50px] transform translate-x-[10px] translate-y-[-10px] animate-float">
+        <img src={humanComputer} alt="humanComputer" />
+      </div>
+      <div className="absolute right-[300px] bottom-10 transform translate-x-[10px] translate-y-[-10px] animate-float">
+        <img src={uiUx} alt="uiUx" />
+      </div>
+
       {/* Social Media Icons */}
       <div className="mb-12">
         <SocialMedia />
@@ -91,7 +109,7 @@ const Hero = () => {
       <img
         src={forhadImage}
         alt="forhad"
-        className="max-w-[602px] h-auto object-cover"
+        className="max-w-[600px] h-[810px] object-cover"
       />
       {/* Footer Text */}
       <div className="flex flex-col items-end text-right mb-12">
