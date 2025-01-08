@@ -1,3 +1,11 @@
+import Header from "./components/Header";
+import Hero from "./components/Hero";
+
 export default function App() {
-  return <h1 className="text-3xl font-bold underline">Hello world!</h1>;
+  return (
+    <section className="bg-[#ECF2F7]">
+      <Header />
+      <Hero/>
+    </section>
+  );
 }
